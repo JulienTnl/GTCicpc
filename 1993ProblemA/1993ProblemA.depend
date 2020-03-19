@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1584608635 source:c:\users\gautier\documents\algo\1993\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1584609426 source:c:\users\gautier\documents\algo\1993problema\main.c
+	<stdio.h>
+	<stdlib.h>
+
