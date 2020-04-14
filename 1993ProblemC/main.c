@@ -67,6 +67,21 @@ void update_desc_capacity(NODE *p) {
     ++p->desc_capacity;
 }
 
+void collect_anc(NODE *p, int *marked, int index) {
+    int i;
+    int v[index];
+    for(i=0;i<index;i++) v[i]=-1;
+    if(p->anc_count == 0) return;
+    if(p==NULL || v[p->index]>=0) return;
+    else {
+        for(i=0;i<p->anc_count;i++) {
+            marked[p->anc[i]->index] = p->weight[i] + marked[p->index];
+            ++v[p->index];
+            collect_anc(p->anc[i], marked, index);
+        }
+    }
+}
+
 void sort_out_node(NODE *p, NODE *q, int rel) {
     if(q->desc_count>=q->desc_capacity) update_desc_capacity(q);
     else {
@@ -81,21 +96,6 @@ void sort_out_node(NODE *p, NODE *q, int rel) {
     ++p->anc_count;
     }
     p->weight[p->anc_count-1]=rel;
-}
-
-void collect_anc(NODE *p, int *marked, int index) {
-    int i;
-    int v[index];
-    for(i=0;i<index;i++) v[i]=-1;
-    if(p->anc_count == 0) return;
-    if(p==NULL || v[p->index]>=0) return;
-    else {
-        for(i=0;i<p->anc_count;i++) {
-            marked[p->anc[i]->index] = p->weight[i] + marked[p->index];
-            ++v[p->index];
-            collect_anc(p->anc[i], marked, index);
-        }
-    }
 }
 
 void find_LCA(NODE *p, NODE *q, int index, int *m, int *n, int *LCA) {
@@ -203,16 +203,16 @@ int main() {
             if(quit1+quit2==2) {
                 find_LCA(node1, node2, index, &m ,&n, &LCA);
                 if(LCA==-1)
-                printf("%s and %s are not related.\n", node1->name, node2->name);
+                printf("%s et %s ne sont pas liés.\n", node1->name, node2->name);
                 else if(LCA == node2->index)
-                printf("%s and %s are descendant-%d\n", node1->name, node2->name, n);
+                printf("%s et %s sont descendants-%d\n", node1->name, node2->name, n);
                 else if(LCA == node1->index)
-                printf("%s and %s are descendant-%d\n", node1->name, node2->name, n);
+                printf("%s et %s sont descendants-%d\n", node1->name, node2->name, n);
                 else {
-                    printf("%s and %s are cousin-%d-%d\n", node1->name, node2->name, m, n);
+                    printf("%s et %s sont cousin-%d-%d\n", node1->name, node2->name, m, n);
                 }
             }
-            else printf("%s and %s are not related.\n", name1, name2);
+            else printf("%s et %s ne sont pas liés.\n", name1, name2);
             fgets(buffer, 100, stdin);
             break;
             case '#':
