@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1588580669 source:c:\users\gautier\documents\aclab\1993problemf\puzzle\main.c
+	<stdio.h>
+	<string.h>
+
