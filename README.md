@@ -39,5 +39,5 @@ Les étiquettes correspondent au status du sujet :
 ![#EB5A46](https://via.placeholder.com/15/EB5A46/000000?text=+) `Sujet prévu`
 
 <p align="right">
-  <i>Authors: Julien TENEUL<br>Gautier COUTURE<br>Gianni GIUDICE<br>
+  <i>Julien TENEUL<br>Gautier COUTURE<br>Gianni GIUDICE<br>
 </p>
