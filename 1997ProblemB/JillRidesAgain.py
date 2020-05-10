@@ -15,13 +15,17 @@ def main():
             if sum < 0:
                 sum = 0
                 tmp = i
-##
+            if sum >= ans:
+                if sum > ans or (sum == ans and (i - tmp > end - start)):
+                    start = tmp + 2
+                    end = i + 2
+            ans = sum
+        i += 1
+        routes += 1
+        if ans > 0:
+            print("The nicest part of route {} is between stops {} and {}".format(routes, start, end))
+        else:
+            print("Route {} has no nice parts".format(routes))
+        essai -= 1
 
-
-
-
-
-
-
-
-#main()
+main()
