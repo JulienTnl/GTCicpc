@@ -56,7 +56,7 @@ def consanguine_calculations(filename):
         if line != 'E N D':
             person = Person(line.split())
             types = person.get_blood_types()
-            print('Case ' + str(i) + ': ')
+            print('Case ' + str(i) + ': ', end='')
             print(types['father'] + ' ' + types['mother'] + ' ' + types['child'])
         line = file.readline()
         i += 1
