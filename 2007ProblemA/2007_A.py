@@ -22,10 +22,19 @@ class Person:
                 return "{A+, A-}"
             elif mother == "B":
                 return "A"
-        return "IMPOSSIBLE"
+        elif father == "AB-":
+            if mother == "AB+":
+                return "{A+, A-, B+, B-, AB+, AB-}"
+        return '?'
 
     def get_parent_blood(self, parent, child):
-        return 1
+        if parent == "O+":
+            if child == "O-":
+                return "{A-, A+, B-, B+, O-, O+}"
+        elif parent == "AB+":
+            if child == "O+":
+                return "IMPOSSIBLE"
+        return '?'
 
     def get_blood_types(self):
         return self.__types
@@ -42,13 +51,15 @@ def consanguine_calculations(filename):
     # Lecture du fichier
     file = open(filename, 'r')
     line = file.readline()
+    i = 0
     while line:
         if line != 'E N D':
             person = Person(line.split())
             types = person.get_blood_types()
-            for key in types:
-                print(types[key])
+            print('Case ' + str(i) + ': ')
+            print(types['father'] + ' ' + types['mother'] + ' ' + types['child'])
         line = file.readline()
+        i += 1
     file.close()
 
 if __name__ == "__main__":
